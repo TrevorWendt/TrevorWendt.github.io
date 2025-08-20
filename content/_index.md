@@ -1,22 +1,24 @@
 ---
 # Leave the homepage title empty to use the site title
 title:
-date: 2022-10-24
+date: 2025-08-20
 type: landing
 
 sections:
   - block: hero
     content:
       title: |
-        Wowchemy
-        Research Group
+        Ansar
+        Lab
       image:
-        filename: welcome.jpg
+        # Put your image here: assets/media/hero/lund-campus.jpg
+        filename: hero/lund-campus.jpg
       text: |
         <br>
-        
-        The **Wowchemy Research Group** has been a center of excellence for Artificial Intelligence research, teaching, and practice since its founding in 2016.
-  
+        Translational Cerebrovascular Research
+
+        {{% cta cta_link="/people/" cta_text="Discover More" %}}
+
   - block: collection
     content:
       title: Latest News
@@ -35,7 +37,8 @@ sections:
     design:
       view: card
       columns: '1'
-  
+
+  # Optional background band — keep or remove
   - block: markdown
     content:
       title:
@@ -44,7 +47,7 @@ sections:
     design:
       columns: '1'
       background:
-        image: 
+        image:
           filename: coders.jpg
           filters:
             brightness: 1
@@ -74,7 +77,7 @@ sections:
       title:
       subtitle:
       text: |
-        {{% cta cta_link="./people/" cta_text="Meet the team →" %}}
+        {{% cta cta_link="/people/" cta_text="Meet the team →" %}}
     design:
       columns: '1'
 ---
