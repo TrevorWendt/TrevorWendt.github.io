@@ -23,19 +23,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      # If your site uses Hugo Modules (Hugo Blox usually does), set up Go and cache modules
-      - name: Setup Go (for Hugo Modules)
+      # Hugo Modules need Go (common with Hugo Blox/Wowchemy)
+      - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: "1.21"
 
-      - name: Cache Hugo Modules
+      - name: Cache Hugo modules
         uses: actions/cache@v4
         with:
           path: |
             ~/.cache/hugo_mod
             ${{ github.workspace }}/resources
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod', '**/go.sum') }}
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.mod', '**/go.sum', '**/config/_default/module.*') }}
           restore-keys: |
             ${{ runner.os }}-hugomod-
 
@@ -45,17 +45,20 @@ jobs:
           hugo-version: "0.128.2"
           extended: true
 
-      # If your theme uses PostCSS/Tailwind/SASS pipelines, Node is needed (safe even if unused)
+      # Some themes use PostCSS/Sass; Node won't hurt if unused
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # Optional but helps Hugo generate correct commit-based metadata
-      - name: Enable Git Info
-        run: echo "HUGO_ENABLEGITINFO=true" >> $GITHUB_ENV
+      # If the site uses modules, this resolves them cleanly
+      - name: Tidy Hugo modules (safe even if none)
+        run: |
+          hugo mod tidy || true
 
-      - name: Build site
+      - name: Build
+        env:
+          HUGO_ENABLEGITINFO: "true"
         run: |
           hugo --minify --gc
 
