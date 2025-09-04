@@ -5,6 +5,7 @@ summary: "Clinical studies and real-world evidence to validate safety, effective
 hero:
   image: "/project-clinical.jpg"
   caption: "Clinical validation and equity."
+date: 2025-09-01
 ---
 
 ### Overview
