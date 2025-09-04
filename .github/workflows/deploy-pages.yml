@@ -45,7 +45,7 @@ jobs:
           hugo-version: "0.128.2"
           extended: true
 
-      - name: Setup Node (for PostCSS/Sass if needed)
+      - name: Setup Node (for PostCSS/Sass if theme needs it)
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -54,41 +54,21 @@ jobs:
         run: |
           hugo version
           hugo env
-
-      - name: List config files (helps catch duplicates/mistakes)
-        run: |
           echo "CONFIG/_DEFAULT CONTENTS:" && ls -la config/_default || true
-          echo "----"
-          for f in config/_default/*; do
-            echo ">>> $f"; sed -n '1,120p' "$f" || true; echo; echo;
-          done
 
-      - name: Resolve Hugo modules (safe even if not used)
+      # Resolve Hugo modules (safe even if not used, but required here)
+      - name: Tidy Hugo modules
         run: |
-          hugo mod tidy || true
+          hugo mod tidy
           hugo mod graph || true
 
-      - name: Build with verbose logging
+      - name: Build (verbose to console)
         env:
           HUGO_ENABLEGITINFO: "true"
         run: |
-          set -e
-          hugo --minify --gc --verbose --log --logFile hugo.log
+          hugo --minify --gc --verbose --debug
 
-      - name: Show last 200 lines of hugo.log in console
-        if: always()
-        run: |
-          echo "------ HUGO LOG TAIL ------"
-          tail -n 200 hugo.log || true
-
-      - name: Upload full hugo.log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: hugo-debug-logs
-          path: hugo.log
-
-      - name: Upload artifact (site)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
