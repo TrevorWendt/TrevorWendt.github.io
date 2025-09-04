@@ -5,6 +5,7 @@ summary: "Automated, scalable in vitro assays, imaging, and analytics to acceler
 hero:
   image: "/project-preclinical-high-throughput.jpg"
   caption: "High-throughput platforms for rapid iteration."
+date: 2025-09-01
 ---
 
 ### Overview
