@@ -54,15 +54,14 @@ jobs:
         run: |
           hugo version
           hugo env
-          echo "CONFIG/_DEFAULT CONTENTS:" && ls -la config/_default || true
+          echo "CONFIG/_DEFAULT:" && ls -la config/_default || true
 
-      # Resolve Hugo modules (safe even if not used, but required here)
-      - name: Tidy Hugo modules
+      - name: Resolve Hugo modules
         run: |
           hugo mod tidy
           hugo mod graph || true
 
-      - name: Build (verbose to console)
+      - name: Build (verbose)
         env:
           HUGO_ENABLEGITINFO: "true"
         run: |
