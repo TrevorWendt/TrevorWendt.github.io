@@ -29,7 +29,7 @@ title: ""
   </div>
   <div>
     <h1 style="margin-bottom:0.5em;">Ansar Lab</h1>
-    <h3 style="margin-bottom:1em; font-weight:400;">Nanomedicine • Cerebrovascular Biology • Environmental Health</h3>
+    <h3 style="margin-bottom:1em; font-weight:400;">Cerebrovascular Biology • Clinical Translational • Nanomedicine • Environmental Health</h3>
     <p style="font-size:1.1rem; line-height:1.6;">
     The Ansar Lab is committed to advancing our understanding of the cerebrovasculature, with a central focus on the Blood-Brain-Barrier (BBB) as a critical regulator of brain health and disease. Our research      integrates molecular, cellular, and systems-level approaches to dissect mechanisms of cerebrovascular injury and repair, spanning models of ischemic stroke, neurodegeneration, and environmental exposures.
     Every project in the lab converges on the BBB as a unifying axis - whether through the development of nanomedicine-based therapeutics, in-depth analysis of cerebrovascular biology, or predictive modeling       of pollutant-induced injury. By fostering collaborations with international clinical and preclinical partners, we aim to bridge fundamental mechanistic discoveries with translational applications,              ultimately driving innovation in diagnostics and therapeutics for cerebrovascular and neurological disorders.
