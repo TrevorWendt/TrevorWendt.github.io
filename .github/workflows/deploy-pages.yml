@@ -18,18 +18,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (with submodules, just in case)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: true      # handles themes pulled as git submodules
 
-      # Hugo Modules need Go (common with Hugo Blox/Wowchemy)
-      - name: Setup Go
+      - name: Setup Go (for Hugo Modules)
         uses: actions/setup-go@v5
         with:
           go-version: "1.21"
 
-      - name: Cache Hugo modules
+      - name: Cache Hugo Modules
         uses: actions/cache@v4
         with:
           path: |
@@ -45,18 +45,24 @@ jobs:
           hugo-version: "0.128.2"
           extended: true
 
-      # Some themes use PostCSS/Sass; Node won't hurt if unused
-      - name: Setup Node
+      - name: Setup Node (for PostCSS/Sass if theme needs it)
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # If the site uses modules, this resolves them cleanly
-      - name: Tidy Hugo modules (safe even if none)
+      # ---- Diagnostics (kept to help if there is an error) ----
+      - name: Print Hugo version & env
+        run: |
+          hugo version
+          hugo env
+
+      # If the site uses Hugo Modules, resolve them; harmless if not
+      - name: Tidy Hugo modules
         run: |
           hugo mod tidy || true
+          ls -la config/_default || true
 
-      - name: Build
+      - name: Build site
         env:
           HUGO_ENABLEGITINFO: "true"
         run: |
