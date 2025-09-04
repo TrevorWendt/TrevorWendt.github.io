@@ -1,10 +1,7 @@
-############################
-## HUGO MODULES
-## Install or uninstall themes and plugins here.
-## Docs: https://gohugo.io/hugo-modules/
-############################
-
-imports:
-  - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-decap-cms
-  - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify
-  - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5
+module:
+  hugoVersion:
+    extended: true
+    min: "0.128.0"
+  # Import the Hugo Blox Research Group theme
+  imports:
+    - path: github.com/HugoBlox/theme-research-group
