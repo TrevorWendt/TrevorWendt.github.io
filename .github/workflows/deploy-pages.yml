@@ -18,11 +18,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (with submodules, just in case)
+      - name: Checkout (with submodules too)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: true      # handles themes pulled as git submodules
+          submodules: true
 
       - name: Setup Go (for Hugo Modules)
         uses: actions/setup-go@v5
@@ -45,30 +45,50 @@ jobs:
           hugo-version: "0.128.2"
           extended: true
 
-      - name: Setup Node (for PostCSS/Sass if theme needs it)
+      - name: Setup Node (for PostCSS/Sass if needed)
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # ---- Diagnostics (kept to help if there is an error) ----
       - name: Print Hugo version & env
         run: |
           hugo version
           hugo env
 
-      # If the site uses Hugo Modules, resolve them; harmless if not
-      - name: Tidy Hugo modules
+      - name: List config files (helps catch duplicates/mistakes)
+        run: |
+          echo "CONFIG/_DEFAULT CONTENTS:" && ls -la config/_default || true
+          echo "----"
+          for f in config/_default/*; do
+            echo ">>> $f"; sed -n '1,120p' "$f" || true; echo; echo;
+          done
+
+      - name: Resolve Hugo modules (safe even if not used)
         run: |
           hugo mod tidy || true
-          ls -la config/_default || true
+          hugo mod graph || true
 
-      - name: Build site
+      - name: Build with verbose logging
         env:
           HUGO_ENABLEGITINFO: "true"
         run: |
-          hugo --minify --gc
+          set -e
+          hugo --minify --gc --verbose --log --logFile hugo.log
 
-      - name: Upload artifact
+      - name: Show last 200 lines of hugo.log in console
+        if: always()
+        run: |
+          echo "------ HUGO LOG TAIL ------"
+          tail -n 200 hugo.log || true
+
+      - name: Upload full hugo.log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-debug-logs
+          path: hugo.log
+
+      - name: Upload artifact (site)
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
