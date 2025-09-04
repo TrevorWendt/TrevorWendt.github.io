@@ -1,0 +1,14 @@
+/* Responsive tweaks for the homepage hero grid */
+@media (max-width: 1200px) {
+  .wc-container [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 640px) {
+  .wc-container [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  .wc-container [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
