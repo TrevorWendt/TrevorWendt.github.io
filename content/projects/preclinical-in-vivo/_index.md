@@ -5,6 +5,7 @@ summary: "Robust in vivo models of cerebrovascular disease compatible for in-dep
 hero:
   image: "/project-preclinical-in-vivo.jpg"
   caption: "Validated in vivo models and readouts."
+date: 2025-09-01
 ---
 
 ### Overview
