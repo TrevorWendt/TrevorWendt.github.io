@@ -1,10 +1,9 @@
 # SITE SETUP
 # Guide: https://docs.hugoblox.com/tutorial/
 # Documentation: https://docs.hugoblox.com/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# YAML syntax: https://learnxinyminutes.com/docs/yaml/
 
 # Appearance
-
 appearance:
   theme_day: minimal
   theme_night:
@@ -16,25 +15,23 @@ custom_css:
   - css/custom.css
 
 # SEO
-
 marketing:
   seo:
     site_type: Organization
     local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo research group theme powered by Wowchemy website builder.'
-    twitter: 'GetResearchDev'
+    org_name: 'Ansar Lab'  # ← UPDATED
+    description: 'Cerebrovascular biology from bench to bedside.'  # ← UPDATED
+    twitter: ''  # set to your handle without @ (e.g., 'AnsarLab') if you have one
   analytics:
-    google_analytics: ''
+    google_analytics: ''      # e.g., G-XXXX
     baidu_tongji: ''
-    google_tag_manager: ''
+    google_tag_manager: ''    # e.g., GTM-XXXX
     microsoft_clarity: ''
   verification:
-    google: ''
+    google: ''  # paste Search Console verification if used
     baidu: ''
 
 # Site header
-
 header:
   navbar:
     enable: true
@@ -43,13 +40,12 @@ header:
     show_language: false
     show_day_night: true
     show_search: true
-    highlight_active_link: false
+    highlight_active_link: true  # better UX when navigating
 
 # Site footer
-
 footer:
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
+    notice: '© {2025} Ansar Lab.'  # ← personalize
     license:
       enable: true
       allow_derivatives: false
@@ -57,14 +53,12 @@ footer:
       allow_commercial: false
 
 # Localization
-
 locale:
   date_format: 'Jan 2, 2006'
   time_format: '3:04 PM'
   address_format: en-us
 
 # Site features
-
 features:
   syntax_highlighter:
     enable: false
@@ -76,7 +70,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/<username>/<repository>'
+    url: 'https://github.com/<username>/<repository>'  # ← set your real repo URL
     content_dir: content
     branch: main
   avatar:
@@ -107,7 +101,6 @@ features:
     zoom: 15
 
 # Extensions
-
 extensions:
   decap_cms:
     branch: main
@@ -116,7 +109,7 @@ extensions:
     enable: true
 
 # Citation style
-
 publications:
   date_format: January 2006
   citation_style: apa
+
