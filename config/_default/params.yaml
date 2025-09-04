@@ -11,6 +11,10 @@ appearance:
   font: native
   font_size: L
 
+# Custom CSS (loads assets/css/custom.css)
+custom_css:
+  - css/custom.css
+
 # SEO
 
 marketing:
