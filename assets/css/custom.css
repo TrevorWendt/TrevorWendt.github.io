@@ -1,14 +1,97 @@
-/* Responsive tweaks for the homepage hero grid */
+/* ====== Project tile grid and overlays ====== */
+.project-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  display: block;
+  line-height: 0; /* remove whitespace gap under image */
+  transform: translateZ(0); /* enable smoother GPU animations */
+}
+
+.tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.tile__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 12%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.0) 100%);
+  pointer-events: none;
+}
+
+.tile__label {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.75rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+  /* Responsive font sizing without media queries */
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+}
+
+.tile:hover img,
+.tile:focus img {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+/* ====== Mission row layout ====== */
+.mission-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.mission-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.mission-copy h1 {
+  margin: 0 0 0.35em 0;
+}
+
+.mission-copy h3 {
+  margin: 0 0 0.85em 0;
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+.mission-copy p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ====== Responsive breakpoints ====== */
 @media (max-width: 1200px) {
-  .wc-container [style*="grid-template-columns:repeat(4,1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .project-tiles {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 640px) {
-  .wc-container [style*="grid-template-columns:repeat(4,1fr)"] {
-    grid-template-columns: 1fr !important;
+  .project-tiles {
+    grid-template-columns: 1fr;
   }
-  .wc-container [style*="grid-template-columns:1fr 1fr"] {
-    grid-template-columns: 1fr !important;
+  .mission-row {
+    grid-template-columns: 1fr;
+  }
+  .tile__label {
+    font-size: clamp(1rem, 3.5vw, 1.1rem);
   }
 }
