@@ -5,6 +5,7 @@ summary: "Bridging preclinical insights into translational frameworks, biomarker
 hero:
   image: "/project-clinical-translation.jpg"
   caption: "From mechanism to trial design."
+date: 2025-09-01
 ---
 
 ### Overview
